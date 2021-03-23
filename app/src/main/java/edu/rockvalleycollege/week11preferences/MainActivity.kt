@@ -7,36 +7,55 @@
 package edu.rockvalleycollege.week11preferences
 
 import android.content.Context
+import android.content.Intent
 import androidx.appcompat.app.AppCompatActivity
 import android.os.Bundle
 import android.view.View
 import android.view.inputmethod.InputMethodManager
 import android.widget.Button
 import android.widget.EditText
+import android.widget.TextView
+import android.widget.Toast
 
 class MainActivity : AppCompatActivity() {
     override fun onCreate(savedInstanceState: Bundle?) {
         super.onCreate(savedInstanceState)
         setContentView(R.layout.activity_main)
 
-        val txtEmail = findViewById<EditText>(R.id.txtEmail) as EditText
-        val btnSetPreferences = findViewById<Button>(R.id.btnSubmit) as Button
+        val btnGotoPreferences2 = findViewById<Button>(R.id.btnGotoPreferences2)
+        val btnRefresh = findViewById<Button>(R.id.btnRefresh)
+        val btnClearData = findViewById<Button>(R.id.btnClearData)
 
-        val preferences = getSharedPreferences("data", Context.MODE_PRIVATE)
+        refresh()
 
-        txtEmail.setText(preferences.getString("email",""))
+        btnGotoPreferences2.setOnClickListener {
 
-        btnSetPreferences.setOnClickListener {
+            var txtSendInfo = "EmptyString"
 
+            //Intent is used to send data between activities
+            val intent = Intent(this, Preferences2::class.java)
+            //putExtra sets value to name SendStuff (Could be called whatever you want
+            intent.putExtra("SendStuff", txtSendInfo)
+
+            //Go to second activity
+            startActivity(intent)
+
+        }// end of GotoPreferences2 onclick listener
+
+        // Refresh button
+        btnRefresh.setOnClickListener{
+            refresh()
+        }
+
+        btnClearData.setOnClickListener {
+            val preferences = getSharedPreferences("data", Context.MODE_PRIVATE)
             val editor = preferences.edit()
 
-            hideKeyboard()
-
-            editor.putString("email",txtEmail.text.toString())
+            editor.putString("email","")
             editor.commit()
-            finish()
 
-        }// end of onclick listener
+            refresh()
+        }
 
         findViewById<View>(android.R.id.content).setOnTouchListener { _, event ->
             hideKeyboard()
@@ -45,6 +64,14 @@ class MainActivity : AppCompatActivity() {
 
     }//end of Oncreate
 
+    fun refresh(){
+        val txtSavedEmail = findViewById<TextView>(R.id.txtSavedEmail)
+        val preferences = getSharedPreferences("data", Context.MODE_PRIVATE)
+
+        txtSavedEmail.text = preferences.getString("email","").toString()
+
+    }
+
     fun hideKeyboard() {
         try {
             val imm = getSystemService(Context.INPUT_METHOD_SERVICE) as InputMethodManager
@@ -52,6 +79,6 @@ class MainActivity : AppCompatActivity() {
         } catch (e: Exception) {
             // TODO: handle exception
         }
-    }
+    }// end of Hidekeyboard
 
 }// end of MainActivity

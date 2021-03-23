@@ -6,28 +6,65 @@
     android:layout_height="match_parent"
     tools:context=".MainActivity">
 
-    <EditText
-        android:id="@+id/txtEmail"
+    <Button
+        android:id="@+id/btnGotoPreferences2"
+        android:layout_width="0dp"
+        android:layout_height="0dp"
+        android:layout_marginStart="54dp"
+        android:layout_marginEnd="54dp"
+        android:layout_marginBottom="23dp"
+        android:text="Go to Enter Email Screen"
+        app:layout_constraintBottom_toTopOf="@+id/btnRefresh"
+        app:layout_constraintEnd_toEndOf="parent"
+        app:layout_constraintStart_toStartOf="parent"
+        app:layout_constraintTop_toBottomOf="@+id/txtSavedEmail" />
+
+    <TextView
+        android:id="@+id/lblSavedEmail"
         android:layout_width="200dp"
-        android:layout_height="50dp"
-        android:layout_marginTop="200dp"
-        android:layout_marginBottom="30dp"
-        android:ems="10"
-        android:hint="Please Enter Your Email"
-        android:inputType="textPersonName"
-        app:layout_constraintBottom_toTopOf="@+id/btnSubmit"
+        android:layout_height="0dp"
+        android:layout_marginTop="167dp"
+        android:layout_marginBottom="10dp"
+        android:text="Email Saved in Preferences"
+        app:layout_constraintBottom_toTopOf="@+id/txtSavedEmail"
         app:layout_constraintEnd_toEndOf="parent"
         app:layout_constraintStart_toStartOf="parent"
         app:layout_constraintTop_toTopOf="parent" />
 
-    <Button
-        android:id="@+id/btnSubmit"
+    <TextView
+        android:id="@+id/txtSavedEmail"
         android:layout_width="200dp"
-        android:layout_height="50dp"
-        android:layout_marginBottom="532dp"
-        android:text="Save Preferences"
+        android:layout_height="0dp"
+        android:layout_marginBottom="44dp"
+        app:layout_constraintBottom_toTopOf="@+id/btnGotoPreferences2"
+        app:layout_constraintEnd_toEndOf="parent"
+        app:layout_constraintStart_toStartOf="parent"
+        app:layout_constraintTop_toBottomOf="@+id/lblSavedEmail" />
+
+    <Button
+        android:id="@+id/btnRefresh"
+        android:layout_width="0dp"
+        android:layout_height="0dp"
+        android:layout_marginStart="52dp"
+        android:layout_marginEnd="52dp"
+        android:layout_marginBottom="22dp"
+        android:text="Click to Refresh Screen"
+        app:layout_constraintBottom_toTopOf="@+id/btnClearData"
+        app:layout_constraintEnd_toEndOf="parent"
+        app:layout_constraintStart_toStartOf="parent"
+        app:layout_constraintTop_toBottomOf="@+id/btnGotoPreferences2" />
+
+    <Button
+        android:id="@+id/btnClearData"
+        android:layout_width="0dp"
+        android:layout_height="0dp"
+        android:layout_marginStart="54dp"
+        android:layout_marginEnd="54dp"
+        android:layout_marginBottom="206dp"
+        android:text="Clear Email from Preferences"
         app:layout_constraintBottom_toBottomOf="parent"
         app:layout_constraintEnd_toEndOf="parent"
         app:layout_constraintStart_toStartOf="parent"
-        app:layout_constraintTop_toBottomOf="@+id/txtEmail" />
+        app:layout_constraintTop_toBottomOf="@+id/btnRefresh" />
+
 </androidx.constraintlayout.widget.ConstraintLayout>
